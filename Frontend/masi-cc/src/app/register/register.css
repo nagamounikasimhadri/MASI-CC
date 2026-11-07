@@ -1,0 +1,88 @@
+host {
+  display: block;
+  max-width: 560px;
+  margin: 0 auto;
+  color: var(--text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h2 {
+  margin: 0 0 28px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.name-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 8px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+button {
+  align-self: center;
+  margin-top: 8px;
+  padding: 11px 36px;
+  border: none;
+  border-radius: 8px;
+  background: #15803d;
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: var(--disabled-bg);
+  color: var(--disabled-text);
+  cursor: not-allowed;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .name-row {
+    grid-template-columns: 1fr;
+  }
+}

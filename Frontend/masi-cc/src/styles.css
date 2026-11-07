@@ -1,0 +1,40 @@
+/* Theme colors. Components use these variables, so a theme only changes values here. */
+:root {
+  color-scheme: light;
+  --page-bg: #f8f7f3;
+  --surface: #ffffff;
+  --text: #243b32;
+  --nav-text: #365348;
+  --border: #e4e8e2;
+  --hover-bg: #eaf3ed;
+  --hover-text: #14532d;
+  --header-bg: #153e35;
+  --shadow: rgb(21 62 53 / 6%);
+  --input-bg: #ffffff;
+  --input-border: #cbd5ce;
+  --focus: #15803d;
+  --disabled-bg: #d1d5db;
+  --disabled-text: #374151;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --page-bg: #101a17;
+  --surface: #18241f;
+  --text: #e6ece8;
+  --nav-text: #c5d2ca;
+  --border: #2e3d36;
+  --hover-bg: #24352d;
+  --hover-text: #d6f0df;
+  --header-bg: #0c2a23;
+  --shadow: rgb(0 0 0 / 30%);
+  --input-bg: #101a17;
+  --input-border: #4a5c53;
+  --focus: #4ade80;
+  --disabled-bg: #33413a;
+  --disabled-text: #a7b5ad;
+}
+
+body {
+  background: var(--page-bg);
+}

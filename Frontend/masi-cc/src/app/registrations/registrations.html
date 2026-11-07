@@ -1,0 +1,95 @@
+<h2>View registrations</h2>
+
+@if (session(); as currentSession) {
+  <div class="list-header">
+    <div>
+      <h3>{{ currentSession.role === 'admin' ? 'All registrations' : 'My registrations' }}</h3>
+      <p>
+        {{ currentSession.role === 'admin' ? 'Admin demo' : currentSession.email }}
+        &middot; {{ visibleRecords().length }} registration(s)
+      </p>
+    </div>
+    <button type="button" class="secondary" (click)="logout()">Log out</button>
+  </div>
+  @if (visibleRecords().length > 0) {
+    <div class="table-container" tabindex="0" role="region" aria-label="Registration records">
+      <table>
+        <caption>
+          {{
+            currentSession.role === 'admin' ? 'All registered people' : 'Your registration details'
+          }}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (record of visibleRecords(); track $index) {
+            <tr>
+              <td>{{ record.firstName }}</td>
+              <td>{{ record.lastName }}</td>
+              <td>{{ record.emailId }}</td>
+              <td>{{ record.telePhone }}</td>
+              <td>{{ record.addressBook }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <p class="empty-state">No registrations yet. Add a registration to get started.</p>
+  }
+  <a routerLink="/register" class="register-link">Register another person</a>
+} @else {
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <h3>Log in to continue</h3>
+    <p>Choose a demo role. Users can view records matching their registered email.</p>
+    <div class="form-field">
+      <label for="login-role">Log in as</label>
+      <select id="login-role" formControlName="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+    @if (loginForm.controls.role.value === 'user') {
+      <div class="form-field">
+        <label for="login-email">Registered email</label>
+        <input
+          id="login-email"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          aria-describedby="email-help email-error"
+          [attr.aria-invalid]="loginForm.controls.email.invalid && loginForm.controls.email.touched"
+        />
+        <small id="email-help">Use the email you entered in the registration form.</small>
+        <div id="email-error" aria-live="polite">
+          @if (loginForm.controls.email.invalid && loginForm.controls.email.touched) {
+            <p class="error">Enter a valid email address.</p>
+          }
+        </div>
+      </div>
+    } @else {
+      <p class="demo-note">
+        Admin access is unrestricted in this demo. Real account verification will be added with the
+        backend.
+      </p>
+    }
+    @if (loginError()) {
+      <p class="error" role="alert">{{ loginError() }}</p>
+    }
+    <button type="submit">
+      {{
+        loginForm.controls.role.value === 'admin'
+          ? 'Continue as demo admin'
+          : 'Continue as demo user'
+      }}
+    </button>
+    <a routerLink="/register">Not registered? Register here</a>
+  </form>
+}

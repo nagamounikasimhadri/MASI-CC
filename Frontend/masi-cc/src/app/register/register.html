@@ -1,0 +1,48 @@
+<h2>Register for MASI'S CC</h2>
+
+@if(!submitted)
+{
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+ <div class="name-row">
+  <div class="form-field">
+    <label for="firstName">First name</label>   
+    <input id="firstName" type="text" formControlName="firstName"> 
+   </div>
+    <div class="form-field">
+    <label for="lastName">Last name</label>
+ <input id="lastName" type="text" formControlName="lastName">  
+</div>
+</div>
+<div class="name-row">
+<div>
+ <label for="emailId">Enter Email Id</label>
+  <input id="emailId" type="email" formControlName="emailId"> 
+@if (registrationForm.controls.emailId.invalid && registrationForm.controls.emailId.touched) {
+    <p>Please enter a  valid email address.</p>
+} 
+</div>
+ <div>
+  <label for="telePhone">Enter phone number</label>
+  <input id="telePhone" type="tel" formControlName="telePhone">
+  @if(registrationForm.controls.telePhone.invalid)
+  {
+    <p>Please enter valid phone number</p>
+  }
+ </div>
+ </div>
+
+ <div>
+  <label for="addressBook">Enter address </label>
+  <input id="addressBook" type="text" formControlName="addressBook">  
+ </div>
+  <button type="submit" [disabled]="registrationForm.invalid">Submit</button>
+</form>
+
+}
+@else
+{
+    <h3>Registration details captured</h3>
+
+    <button type=" button" (click)="registerAnother()">Register Another Person</button>
+}
+

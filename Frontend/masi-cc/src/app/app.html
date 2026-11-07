@@ -1,0 +1,23 @@
+<header>
+  <h1>Welcome to MASI'S CC</h1>
+  <!-- The symbol has no readable name, so the label tells screen readers what it does. -->
+  <button
+    type="button"
+    class="theme-toggle"
+    [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+    [title]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+    (click)="toggleTheme()"
+  >
+    <span aria-hidden="true">{{ isDark() ? '☀︎' : '☾' }}</span>
+  </button>
+</header>
+<div class="app-layout">
+  <nav aria-label="Main navigation">
+    <a routerLink="/">Home</a>
+    <a routerLink="/register">Registration</a>
+    <a routerLink="/registrations">View registrations</a>
+  </nav>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
