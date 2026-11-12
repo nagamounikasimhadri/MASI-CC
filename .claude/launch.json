@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "masi-cc",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "Frontend/masi-cc", "start"],
+      "port": 4200
+    }
+  ]
+}
